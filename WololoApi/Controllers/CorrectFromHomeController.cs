@@ -18,8 +18,8 @@ namespace ConvertingAnyToDoc.Controllers
         #region Properties
         private IConverter converter;
         private Model.Email.IEmailRequest emailRequest;
-        private const string body = "Correção do aluno: {0} - {1}";
-        private const string title = "Prezados,\r\nSegue em anexo a correção referente ao texto do aluno {0}";
+        private const string title = "Correção do aluno: {0} - {1}";
+        private const string body = "Prezados,\r\nSegue em anexo a correção referente ao texto do aluno {0}";
         private readonly IConfiguration configuration;
         #endregion
 
@@ -54,7 +54,7 @@ namespace ConvertingAnyToDoc.Controllers
             
             emailRequest = new EmailRequest();
             
-            emailRequest.SetProperties(sender, receivers, string.Format(title, aluno), string.Format(body, aluno, DateTime.Now));
+            emailRequest.SetProperties(sender, receivers, string.Format(title, aluno, DateTime.Now), string.Format(body, aluno));
             emailRequest.SetArchiveParams(doc, $"{aluno}.docx", contentType);
 
             return emailRequest.TrySendEmail();

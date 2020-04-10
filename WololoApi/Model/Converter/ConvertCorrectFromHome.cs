@@ -24,9 +24,14 @@ namespace ConvertingAnyToDoc.Model.Converter
             var data = new
             {
                 Aluno = modelCorrectFromHome.Student,
-                Date = date,
-                Text = modelCorrectFromHome.TextComents.Aggregate((x, y) => new Paragrafo { Comment = $"{x.Comment}\r\n\r\n{y.Comment}" }).Comment,
-                Option = modelCorrectFromHome.Options.Select(x => $"{x.Question}: {x.Answer}").Aggregate((x, y) => $"{x}\r\n\r\n{y}")
+                Professor = modelCorrectFromHome.Teacher,
+                Nota = modelCorrectFromHome.Grade,
+                NormaPadraoEscrita = modelCorrectFromHome.StandardNormeWriteDomain?.Aggregate((x, y) => $"{x}\r\n{y}"),
+                TratamentoDadoTema = modelCorrectFromHome.TreatmentByTopic?.Aggregate((x, y) => $"{x}\r\n{y}"),
+                EmpregoGeneroProposto = modelCorrectFromHome.PoposedGenderAplication?.Aggregate((x, y) => $"{x}\r\n{y}"),
+                OrganizacaoTextual = modelCorrectFromHome.TextOrganization?.Aggregate((x, y) => $"{x}\r\n{y}"),
+                Desconsideradas = modelCorrectFromHome.TextToBeDesconsiderated?.Aggregate((x, y) => $"{x}\r\n{y}"),
+                Comentarios = modelCorrectFromHome.TextComents?.Aggregate((x, y) => new Paragrafo { Comment = $"{x.Comment}\r\n{y.Comment}" }).Comment
             };
 
             document.MailMerge.Execute(data);

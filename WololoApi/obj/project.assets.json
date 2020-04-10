@@ -5585,11 +5585,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\u6068788\\source\\repos\\ConvertingAnyToDoc\\WololoApi\\WololoApi.csproj",
+      "projectUniqueName": "C:\\Git\\HacketeirosDaNoite\\WololoApi\\WololoApi\\WololoApi.csproj",
       "projectName": "WololoApi",
-      "projectPath": "C:\\Users\\u6068788\\source\\repos\\ConvertingAnyToDoc\\WololoApi\\WololoApi.csproj",
+      "projectPath": "C:\\Git\\HacketeirosDaNoite\\WololoApi\\WololoApi\\WololoApi.csproj",
       "packagesPath": "C:\\Users\\u6068788\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\u6068788\\source\\repos\\ConvertingAnyToDoc\\WololoApi\\obj\\",
+      "outputPath": "C:\\Git\\HacketeirosDaNoite\\WololoApi\\WololoApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
