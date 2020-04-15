@@ -32,7 +32,7 @@ namespace ConvertingAnyToDoc.Model
         /// <summary>
         /// Observations of text
         /// </summary>
-        public List<Paragrafo> TextComents { get; set; }
+        public List<string> TextComents { get; set; }
 
         /// <summary>
         /// Option that are not good about the Standard Norme Write Domain

@@ -31,7 +31,7 @@ namespace ConvertingAnyToDoc.Model.Converter
                 EmpregoGeneroProposto = modelCorrectFromHome.PoposedGenderAplication?.Aggregate((x, y) => $"{x}\r\n{y}"),
                 OrganizacaoTextual = modelCorrectFromHome.TextOrganization?.Aggregate((x, y) => $"{x}\r\n{y}"),
                 Desconsideradas = modelCorrectFromHome.TextToBeDesconsiderated?.Aggregate((x, y) => $"{x}\r\n{y}"),
-                Comentarios = modelCorrectFromHome.TextComents?.Aggregate((x, y) => new Paragrafo { Comment = $"{x.Comment}\r\n{y.Comment}" }).Comment
+                Comentarios = modelCorrectFromHome.TextComents?.Aggregate((x, y) => $"{x}\r\n{y}")
             };
 
             document.MailMerge.Execute(data);
