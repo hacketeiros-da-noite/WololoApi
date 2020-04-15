@@ -41,10 +41,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "DinkToPdf": {
-              "target": "Package",
-              "version": "[1.0.8, )"
-            },
             "GemBox.Document": {
               "target": "Package",
               "version": "[31.0.1156, )"
