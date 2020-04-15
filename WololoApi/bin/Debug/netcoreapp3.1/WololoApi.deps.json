@@ -24,7 +24,6 @@
     ".NETCoreApp,Version=v3.1": {
       "WololoApi/1.0.0": {
         "dependencies": {
-          "DinkToPdf": "1.0.8",
           "GemBox.Document": "31.0.1156",
           "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-1-003177",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -315,26 +314,6 @@
         },
         "compile": {
           "WololoApi.dll": {}
-        }
-      },
-      "DinkToPdf/1.0.8": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.Collections.Concurrent": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0",
-          "System.Threading.Thread": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.6/DinkToPdf.dll": {
-            "assemblyVersion": "1.0.8.0",
-            "fileVersion": "1.0.8.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard1.6/DinkToPdf.dll": {}
         }
       },
       "GemBox.Document/31.0.1156": {
@@ -3063,13 +3042,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "DinkToPdf/1.0.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-wJDlcNXjQ+OnBFwh3LBeAXgrXqlKl0RsgN60XpxEFbyqzdaG9ASb5HTXQjXQPaBguSCOrGZZESPnpcng34TEkw==",
-      "path": "dinktopdf/1.0.8",
-      "hashPath": "dinktopdf.1.0.8.nupkg.sha512"
     },
     "GemBox.Document/31.0.1156": {
       "type": "package",

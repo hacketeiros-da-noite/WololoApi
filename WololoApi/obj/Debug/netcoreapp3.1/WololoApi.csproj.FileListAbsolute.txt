@@ -20,7 +20,6 @@ C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\bin\Debug\netcoreapp3.1\NuGet.Pack
 C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\bin\Debug\netcoreapp3.1\NuGet.Packaging.Core.Types.dll
 C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\bin\Debug\netcoreapp3.1\NuGet.RuntimeModel.dll
 C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\bin\Debug\netcoreapp3.1\NuGet.Versioning.dll
-C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\obj\Debug\netcoreapp3.1\WololoApi.csprojAssemblyReference.cache
 C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\obj\Debug\netcoreapp3.1\WololoApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\obj\Debug\netcoreapp3.1\WololoApi.AssemblyInfoInputs.cache
 C:\Git\HacketeirosDaNoite\WololoApi\WololoApi\obj\Debug\netcoreapp3.1\WololoApi.AssemblyInfo.cs
