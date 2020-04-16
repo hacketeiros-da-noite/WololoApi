@@ -40,7 +40,7 @@ namespace ConvertingAnyToDoc.Controllers
         {
             converter = new ConvertCorrectFromHome();
 
-            var converterResult = converter.GetFileResult(obj, configuration.GetSection("CorrectFromHomeModelPath").Value, File);
+            var converterResult = converter.GetFileResult(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
 
             if (SendEmail(obj.Sender, obj.Recipients, converterResult.memory, obj.Student))
                 return (HttpStatusCode.OK, converterResult.file);
