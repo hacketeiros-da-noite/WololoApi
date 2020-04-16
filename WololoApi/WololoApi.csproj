@@ -9,5 +9,14 @@
     <PackageReference Include="Microsoft.DotNet.ProjectModel" Version="1.0.0-rc3-003121" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DocumentConverterModel\ModelCorrect6A9Ano.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentConverterModel\ModelCorrectFromHome.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
