@@ -29,13 +29,13 @@ namespace ConvertingAnyToDoc.Controllers
             ComponentInfo.SetLicense("FREE-LIMITED-KEY");
         }
 
-        [HttpGet]
+        [HttpGet("IsAlive")]
         public ActionResult<string> IsAlive()
         {
             return "I'm working";
         }
 
-        [HttpPost]
+        [HttpPost("CreateDocument")]
         public (HttpStatusCode statusCode, FileResult result) CreateDocument(BaseModelCorrectFromHome obj)
         {
             converter = new ConvertCorrectFromHome();
