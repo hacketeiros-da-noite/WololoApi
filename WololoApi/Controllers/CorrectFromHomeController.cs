@@ -17,7 +17,6 @@ namespace ConvertingAnyToDoc.Controllers
     {
         #region Properties
         private IConverter converter;
-        private Model.Email.IEmailRequest emailRequest;
         private const string title = "Correção do aluno: {0} - {1}";
         private const string body = "Prezados,\r\nSegue em anexo a correção referente ao texto do aluno {0}";
         private readonly IConfiguration configuration;
@@ -42,22 +41,10 @@ namespace ConvertingAnyToDoc.Controllers
 
             var converterResult = converter.GetFileResult(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
 
-            if (SendEmail(obj.Sender, obj.Recipients, converterResult.memory, obj.Student))
+            if (converterResult.file != null)
                 return Ok(converterResult.file);
 
             return BadRequest();
-        }
-
-        private bool SendEmail(EmailParameters sender, List<string> receivers, MemoryStream doc, string aluno)
-        {
-            var contentType = new ContentType(SaveOptions.DocxDefault.ContentType);
-            
-            emailRequest = new EmailRequest();
-            
-            emailRequest.SetProperties(sender, receivers, string.Format(title, aluno, DateTime.Now), string.Format(body, aluno));
-            emailRequest.SetArchiveParams(doc, $"{aluno}.docx", contentType);
-
-            return emailRequest.TrySendEmail();
         }
     }
 }
