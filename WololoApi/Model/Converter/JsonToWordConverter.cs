@@ -14,26 +14,14 @@ namespace ConvertingAnyToDoc.Model
         /// Convert the informed object to Docx File
         /// </summary>
         /// <param name="getFile">It's good to use <see cref="File"/></param>
-        public (FileResult file, MemoryStream memory) GetFileResult<T>(T obj, string pathDocModel, Func<byte[], string, string, FileResult> getFile) where T : class
+        public string GetBase64Result<T>(T obj, string pathDocModel, Func<byte[], string, string, FileResult> getFile) where T : class
         {
             pathDoc = pathDocModel;
             var option = SaveOptions.DocxDefault;
 
-            var response = GetConvertedFile(obj, option);
+            var response = GetBytes(Process(obj), option);
 
-            var file = getFile(response.byteResult, option.ContentType, GetNameOfArchive(obj));
-
-            return (file, response.stream);
-        }
-
-        /// <summary>
-        /// Get the byte array and memory stream of converted archive by <see cref="GetBytes(DocumentModel, SaveOptions)"/>
-        /// </summary>
-        private (byte[] byteResult, MemoryStream stream) GetConvertedFile<T>(T model, SaveOptions option) where T : class
-        {
-            var byteResult = GetBytes(Process(model), option);
-
-            return (byteResult, stream);
+            return Convert.ToBase64String(response);
         }
 
         /// <summary>
