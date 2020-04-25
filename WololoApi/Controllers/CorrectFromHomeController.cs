@@ -29,23 +29,23 @@ namespace ConvertingAnyToDoc.Controllers
             ComponentInfo.SetLicense("FREE-LIMITED-KEY");
         }
 
-        [HttpGet("IsAlive")]
-        public ActionResult<string> IsAlive()
+        [HttpGet("{id:int}", Name = nameof(IsAlive))]
+        public IActionResult IsAlive()
         {
-            return "I'm working";
+            return Ok("I'm working");
         }
 
-        [HttpPost("CreateDocument")]
-        public (HttpStatusCode statusCode, FileResult result) CreateDocument(BaseModelCorrectFromHome obj)
+        [HttpPost("{id:int}", Name = nameof(CreateDocument))]
+        public IActionResult CreateDocument(BaseModelCorrectFromHome obj)
         {
             converter = new ConvertCorrectFromHome();
 
             var converterResult = converter.GetFileResult(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
 
             if (SendEmail(obj.Sender, obj.Recipients, converterResult.memory, obj.Student))
-                return (HttpStatusCode.OK, converterResult.file);
+                return Ok(converterResult.file);
 
-            return (HttpStatusCode.BadRequest, converterResult.file);
+            return BadRequest();
         }
 
         private bool SendEmail(EmailParameters sender, List<string> receivers, MemoryStream doc, string aluno)
