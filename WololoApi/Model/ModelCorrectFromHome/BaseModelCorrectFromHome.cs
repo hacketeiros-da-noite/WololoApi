@@ -3,17 +3,7 @@
 namespace ConvertingAnyToDoc.Model
 {
     public class BaseModelCorrectFromHome
-    {
-        /// <summary>
-        /// Email of sender
-        /// </summary>
-        public EmailParameters Sender { get; set; }
-        
-        /// <summary>
-        /// Emails of receivers
-        /// </summary>
-        public List<string> Recipients { get; set; }
-        
+    {          
         /// <summary>
         /// Name of the student of correction
         /// </summary>
