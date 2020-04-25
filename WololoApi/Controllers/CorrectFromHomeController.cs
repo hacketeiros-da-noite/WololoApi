@@ -39,12 +39,12 @@ namespace ConvertingAnyToDoc.Controllers
         {
             converter = new ConvertCorrectFromHome();
 
-            var converterResult = converter.GetFileResult(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
+            var converterResult = converter.GetBase64Result(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
 
-            if (converterResult.file != null)
-                return Ok(converterResult.file);
+            if (string.IsNullOrWhiteSpace(converterResult))
+                return BadRequest();    
 
-            return BadRequest();
+            return Ok(converterResult);
         }
     }
 }
