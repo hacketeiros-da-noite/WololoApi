@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="GemBox.Document" Version="31.0.1156" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.DotNet.ProjectModel" Version="1.0.0-rc3-003121" />
   </ItemGroup>
 
