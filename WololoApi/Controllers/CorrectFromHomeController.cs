@@ -29,13 +29,13 @@ namespace ConvertingAnyToDoc.Controllers
         }
 
         [HttpGet(nameof(IsAlive))]
-        public IActionResult IsAlive()
+        public ActionResult<string> IsAlive()
         {
             return Ok("I'm working");
         }
 
         [HttpPost(nameof(CreateDocument))]
-        public IActionResult CreateDocument(BaseModelCorrectFromHome obj)
+        public ActionResult<string> CreateDocument(BaseModelCorrectFromHome obj)
         {
             converter = new ConvertCorrectFromHome();
 
