@@ -18,10 +18,10 @@ namespace ConvertingAnyToDoc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.AddControllers();
 
             services.AddSwaggerGen(c => {
+                c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.HttpMethod}");
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
@@ -52,7 +52,7 @@ namespace ConvertingAnyToDoc
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Four Houses From House V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wololo Api V1");
             });
         }
     }
