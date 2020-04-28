@@ -39,6 +39,7 @@ namespace ConvertingAnyToDoc.Controllers
         public ActionResult<string> CreateDocument(BaseModelCorrectFromHome obj)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            Response.ContentType = "application/json";
             converter = new ConvertCorrectFromHome();
 
             var converterResult = converter.GetBase64Result(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
