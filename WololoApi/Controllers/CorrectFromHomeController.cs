@@ -31,12 +31,14 @@ namespace ConvertingAnyToDoc.Controllers
         [HttpGet(nameof(IsAlive))]
         public ActionResult<string> IsAlive()
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             return Ok("I'm working");
         }
 
         [HttpPost(nameof(CreateDocument))]
         public ActionResult<string> CreateDocument(BaseModelCorrectFromHome obj)
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             converter = new ConvertCorrectFromHome();
 
             var converterResult = converter.GetBase64Result(obj, Path.GetFullPath(configuration.GetSection("CorrectFromHomeModelPath").Value), File);
@@ -44,7 +46,7 @@ namespace ConvertingAnyToDoc.Controllers
             if (string.IsNullOrWhiteSpace(converterResult))
                 return BadRequest();    
 
-            return Ok(converterResult);
+            return Ok($"data:application/font-woff;charset=utf-8;base64,{converterResult}");
         }
     }
 }
