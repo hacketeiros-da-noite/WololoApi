@@ -46,7 +46,7 @@ namespace ConvertingAnyToDoc.Controllers
             if (string.IsNullOrWhiteSpace(converterResult))
                 return BadRequest();    
 
-            return Ok($"data:application/font-woff;charset=utf-8;base64,{converterResult}");
+            return Ok(converterResult);
         }
     }
 }
