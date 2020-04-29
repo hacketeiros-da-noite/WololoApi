@@ -1,5 +1,6 @@
 ﻿using GemBox.Document;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -23,20 +24,33 @@ namespace ConvertingAnyToDoc.Model.Converter
 
             var data = new
             {
-                Aluno = modelCorrectFromHome.Student,
-                Professor = modelCorrectFromHome.Teacher,
-                Nota = modelCorrectFromHome.Grade,
-                NormaPadraoEscrita = modelCorrectFromHome.StandardNormeWriteDomain?.Aggregate((x, y) => $"{x}\r\n{y}"),
-                TratamentoDadoTema = modelCorrectFromHome.TreatmentByTopic?.Aggregate((x, y) => $"{x}\r\n{y}"),
-                EmpregoGeneroProposto = modelCorrectFromHome.PoposedGenderAplication?.Aggregate((x, y) => $"{x}\r\n{y}"),
-                OrganizacaoTextual = modelCorrectFromHome.TextOrganization?.Aggregate((x, y) => $"{x}\r\n{y}"),
-                Desconsideradas = modelCorrectFromHome.TextToBeDesconsiderated?.Aggregate((x, y) => $"{x}\r\n{y}"),
-                Comentarios = modelCorrectFromHome.TextComents?.Aggregate((x, y) => $"{x}\r\n{y}")
+                Aluno = modelCorrectFromHome?.Student,
+                Professor = modelCorrectFromHome?.Teacher,
+                Nota = modelCorrectFromHome?.Grade,
+                NormaPadraoEscrita = TryGetValueByList(modelCorrectFromHome.StandardNormeWriteDomain),
+                TratamentoDadoTema = TryGetValueByList(modelCorrectFromHome?.TreatmentByTopic),
+                EmpregoGeneroProposto = TryGetValueByList(modelCorrectFromHome?.PoposedGenderAplication),
+                OrganizacaoTextual = TryGetValueByList(modelCorrectFromHome?.TextOrganization),
+                Desconsideradas = TryGetValueByList(modelCorrectFromHome?.TextToBeDesconsiderated),
+                Comentarios = TryGetValueByList(modelCorrectFromHome?.TextComents)
             };
 
             document.MailMerge.Execute(data);
 
             return document;
+        }
+
+        private static string TryGetValueByList(List<string>? listValues)
+        {
+            try
+            {
+                return listValues?.Aggregate((x, y) => $"{x}\r\n{y}");
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         /// <summary>
