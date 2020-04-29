@@ -19,14 +19,11 @@ namespace ConvertingAnyToDoc.Model.Converter
 
             DocumentModel document = DocumentModel.Load(path);
 
-            var date = DateTime.Now.ToShortDateString();
             var modelCorrectFromHome = model as BaseModelCorrectFromHome;
 
             var data = new
             {
                 Aluno = modelCorrectFromHome?.Student,
-                Professor = modelCorrectFromHome?.Teacher,
-                Nota = modelCorrectFromHome?.Grade,
                 NormaPadraoEscrita = TryGetValueByList(modelCorrectFromHome.StandardNormeWriteDomain),
                 TratamentoDadoTema = TryGetValueByList(modelCorrectFromHome?.TreatmentByTopic),
                 EmpregoGeneroProposto = TryGetValueByList(modelCorrectFromHome?.PoposedGenderAplication),
