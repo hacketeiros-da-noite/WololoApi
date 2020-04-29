@@ -6,6 +6,8 @@ using WololoApi.Model.ResquestModel;
 
 namespace WololoApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ConverterController : Controller
     {
         [HttpPost(nameof(ConvertBase64ToPdfBase64))]
