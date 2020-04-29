@@ -28,6 +28,7 @@ namespace ConvertingAnyToDoc.Controllers
         {
             this.configuration = configuration;
             ComponentInfo.SetLicense("FREE-LIMITED-KEY");
+            ComponentInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = FreeLimitReachedAction.ContinueAsTrial;
         }
 
         [HttpPost(nameof(CreateDocument))]
