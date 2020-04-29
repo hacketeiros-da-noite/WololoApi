@@ -1,4 +1,5 @@
-﻿using ConvertingAnyToDoc.Model;
+﻿using Aspose.Words;
+using ConvertingAnyToDoc.Model;
 using ConvertingAnyToDoc.Model.Converter;
 using GemBox.Document;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mime;
+using WololoApi.Model.ResquestModel;
 
 namespace ConvertingAnyToDoc.Controllers
 {
@@ -28,13 +30,6 @@ namespace ConvertingAnyToDoc.Controllers
             ComponentInfo.SetLicense("FREE-LIMITED-KEY");
         }
 
-        [HttpGet(nameof(IsAlive))]
-        public ActionResult<string> IsAlive()
-        {
-            Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            return Ok("I'm working");
-        }
-
         [HttpPost(nameof(CreateDocument))]
         public ActionResult<string> CreateDocument(BaseModelCorrectFromHome obj)
         {
@@ -48,6 +43,36 @@ namespace ConvertingAnyToDoc.Controllers
                 return BadRequest();    
 
             return Ok(converterResult);
+        }
+
+        [HttpGet(nameof(IsAlive))]
+        public ActionResult<string> IsAlive()
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return Ok("I'm working");
+        }
+
+        [HttpPost(nameof(ConvertBase64ToPdfBase64))]
+        public ActionResult<string> ConvertBase64ToPdfBase64([FromBody] ConverterModel converter)
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            try
+            {
+                var stream = new MemoryStream(Convert.FromBase64String(converter.Base64));
+                var doc = new Document(stream);
+
+                MemoryStream dstStream = new MemoryStream();
+                doc.Save(dstStream, SaveFormat.Pdf);
+                
+                var base64Pdf = Convert.ToBase64String(dstStream.ToArray());
+                
+                return Ok(base64Pdf);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
