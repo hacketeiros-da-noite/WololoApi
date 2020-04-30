@@ -32,7 +32,7 @@ namespace ConvertingAnyToDoc.Controllers
         }
 
         [HttpPost(nameof(CreateDocument))]
-        public ActionResult<string> CreateDocument(BaseModelCorrectFromHome obj)
+        public ActionResult<ConverterModel> CreateDocument(BaseModelCorrectFromHome obj)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             Response.ContentType = "application/json";
@@ -43,7 +43,7 @@ namespace ConvertingAnyToDoc.Controllers
             if (string.IsNullOrWhiteSpace(converterResult))
                 return BadRequest();    
 
-            return Ok(converterResult);
+            return new ConverterModel { Base64 = converterResult };
         }
 
         [HttpGet(nameof(IsAlive))]
@@ -54,7 +54,7 @@ namespace ConvertingAnyToDoc.Controllers
         }
 
         [HttpPost(nameof(ConvertBase64ToPdfBase64))]
-        public ActionResult<string> ConvertBase64ToPdfBase64([FromBody] ConverterModel converter)
+        public ActionResult<ConverterModel> ConvertBase64ToPdfBase64([FromBody] ConverterModel converter)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
 
@@ -68,7 +68,7 @@ namespace ConvertingAnyToDoc.Controllers
                 
                 var base64Pdf = Convert.ToBase64String(dstStream.ToArray());
                 
-                return Ok(base64Pdf);
+                return new ConverterModel { Base64 = base64Pdf };
             }
             catch (Exception ex)
             {
