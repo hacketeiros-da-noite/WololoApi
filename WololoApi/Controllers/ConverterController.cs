@@ -11,7 +11,7 @@ namespace WololoApi.Controllers
     public class ConverterController : Controller
     {
         [HttpPost(nameof(ConvertBase64ToPdfBase64))]
-        public IActionResult ConvertBase64ToPdfBase64([FromBody] ConverterModel converter)
+        public ActionResult<string> ConvertBase64ToPdfBase64([FromBody] ConverterModel converter)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
 
