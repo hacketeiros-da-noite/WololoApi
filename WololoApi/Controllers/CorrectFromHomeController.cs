@@ -67,7 +67,10 @@ namespace ConvertingAnyToDoc.Controllers
                 doc.Save(dstStream, SaveFormat.Pdf);
                 
                 var base64Pdf = Convert.ToBase64String(dstStream.ToArray());
-                
+
+                stream.Dispose();
+                dstStream.Dispose();
+
                 return new ConverterModel { Base64 = base64Pdf };
             }
             catch (Exception ex)
