@@ -57,25 +57,30 @@ namespace ConvertingAnyToDoc.Controllers
         public ActionResult<ConverterModel> ConvertBase64ToPdfBase64([FromBody] ConverterModel converter)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
-
+            
+            var mstreamDocument = new MemoryStream();
+            var dstStream = new MemoryStream();
             try
             {
-                var stream = new MemoryStream(Convert.FromBase64String(converter.Base64));
-                var doc = new Document(stream);
+                var byteDocument = Convert.FromBase64String(converter.Base64);
+                mstreamDocument.Write(byteDocument);
+                
+                var doc = new Document(mstreamDocument);
 
-                MemoryStream dstStream = new MemoryStream();
                 doc.Save(dstStream, SaveFormat.Pdf);
                 
                 var base64Pdf = Convert.ToBase64String(dstStream.ToArray());
-
-                stream.Dispose();
-                dstStream.Dispose();
 
                 return new ConverterModel { Base64 = base64Pdf };
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+            finally
+            {
+                mstreamDocument.Dispose();
+                dstStream.Dispose();
             }
         }
     }
