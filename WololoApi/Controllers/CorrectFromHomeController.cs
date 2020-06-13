@@ -80,7 +80,10 @@ namespace ConvertingAnyToDoc.Controllers
             finally
             {
                 mstreamDocument.Dispose();
+                mstreamDocument.Close();
+
                 dstStream.Dispose();
+                dstStream.Close();
             }
         }
     }
